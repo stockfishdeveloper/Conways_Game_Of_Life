@@ -4,9 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.*;
 import java.awt.geom.*;
-class Draw_Board implements ActionListener, MouseListener
+class Draw_Board implements ActionListener, MouseListener, MouseMotionListener
 {
 	JFrame frame;
 	JPanel panel;
@@ -24,6 +25,7 @@ class Draw_Board implements ActionListener, MouseListener
 	static int[] SaveBoardx = new int[10000];
 	static int[] SaveBoardy = new int[10000];
 	static int SaveCount;
+	static boolean isDown = false;
 	static boolean[][] GameBoard = new boolean[100][100];
 	
 public Draw_Board()
@@ -83,6 +85,7 @@ public Draw_Board()
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	component = new Board_Rep();
 	component.addMouseListener(this);
+	component.addMouseMotionListener(this);
 	component.setPreferredSize(new Dimension(970, 970));
 	component.setMaximumSize(panel.getPreferredSize());
 	component.setMinimumSize(panel.getPreferredSize());
@@ -190,23 +193,44 @@ public void mousePressed(MouseEvent m)
 		Draw_Board.GameBoard[x / 9][y / 9] = true;
 	}
 	component.paintImmediately(0, 0, 970, 970);
+	Draw_Board.isDown = true;
 	
 }
-@Override
 public void mouseEntered(MouseEvent m) {
+	//System.out.println(m.getX() + m.getY());
 }
-@Override
-public void mouseExited(MouseEvent arg0) {
+public void mouseExited(MouseEvent m) {
 	// TODO Auto-generated method stub
+	//System.out.println(m.getX() + m.getY());
+}
+public void mouseReleased(MouseEvent m) {
+	// TODO Auto-generated method stub
+	Draw_Board.isDown = false;
+}
+public void mouseClicked(MouseEvent m) {
+	// TODO Auto-generated method stub
+	//System.out.println(m.getX() + m.getY());
+}
+public void mouseDown(MouseEvent m)
+{
+	
+}
+public void mouseUp(MouseEvent m)
+{
+	
+}
+public void mouseMoved(MouseEvent m)
+{
 	
 }
 @Override
-public void mouseReleased(MouseEvent arg0) {
-	// TODO Auto-generated method stub
-	
+public void mouseDragged(MouseEvent m) {
+	int x = m.getX();
+	int y = m.getY();
+	Draw_Board.GameBoard[x / 9][y / 9] = true;
+	component.paintImmediately(0, 0, 970, 970);
 }
-@Override
-public void mouseClicked(MouseEvent arg0) {
+public void mouseMove(MouseEvent arg0) {
 	// TODO Auto-generated method stub
 	
 }
