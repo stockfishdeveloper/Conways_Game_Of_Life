@@ -101,22 +101,22 @@ class Draw_Board implements ActionListener, MouseListener, MouseMotionListener {
     // our action response methods
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("Stop")) {
+        if ("Stop".equals(e.getActionCommand())) {
             animate = false;
         }
-        if (e.getActionCommand().equals("Start")) {
+        if ("Start".equals(e.getActionCommand())) {
             animate = true;
         }
-        if (e.getActionCommand().equals("Fast")) {
+        if ("Fast".equals(e.getActionCommand())) {
             delay = 0;
         }
-        if (e.getActionCommand().equals("Medium")) {
+        if ("Medium".equals(e.getActionCommand())) {
             delay = 150;
         }
-        if (e.getActionCommand().equals("Slow")) {
+        if ("Slow".equals(e.getActionCommand())) {
             delay = 300;
         }
-        if (e.getActionCommand().equals("Clear")) {
+        if ("Clear".equals(e.getActionCommand())) {
             // clear the gameboard
             for (int i = 0; i < 100; i++) {
                 for (int j = 0; j < 100; j++) {
@@ -127,7 +127,7 @@ class Draw_Board implements ActionListener, MouseListener, MouseMotionListener {
             animate = false;
             component.paintImmediately(0, 0, 970, 970);
         }
-        if (e.getActionCommand().equals("Save")) {
+        if ("Save".equals(e.getActionCommand())) {
             // set the save board to zero to be sure
             SaveCount = 0;
             for (int j = 0; j < 10000; j++) {
@@ -146,7 +146,7 @@ class Draw_Board implements ActionListener, MouseListener, MouseMotionListener {
             }
         }
         // clear the actual gamebord in anticipation of recall
-        if (e.getActionCommand().equals("Recall")) {
+        if ("Recall".equals(e.getActionCommand())) {
             for (int i = 0; i < 100; i++) {
                 for (int j = 0; j < 100; j++) {
                     GameBoard[i][j] = false;
